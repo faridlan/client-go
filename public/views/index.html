@@ -25,6 +25,7 @@
     <ol class="list-group">
       {{range .Data}}
       <li class="list-group-item">ID : {{.ID}}, Name: {{.Name}}</li>
+      <button type="button" class="btn btn-danger btn-block" onclick="deleteSkill('{{.ID}}')">Delete</button>
       {{end}}
     </ol>
   </div>
@@ -33,6 +34,27 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    async function deleteSkill(skillId) {
+      const url = `http://localhost:8080/skills/${skillId}`;
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        alert('Skill deleted successfully');
+        // Optionally, you can add logic to remove the deleted item from the UI
+        location.reload(); // This will refresh the page to show the updated list
+      } else {
+        alert('Failed to delete skill');
+      }
+    }
+  </script>
+
 </body>
+
 
 </html>
