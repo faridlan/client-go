@@ -13,6 +13,7 @@ type SkillController interface {
 	FindById(ctx *fiber.Ctx) error
 	CreateRender(ctx *fiber.Ctx) error
 	CreateSKill(ctx *fiber.Ctx) error
+	DeleteSKill(ctx *fiber.Ctx) error
 }
 
 type SkillControllerImpl struct {
@@ -108,5 +109,18 @@ func (controller *SkillControllerImpl) CreateSKill(ctx *fiber.Ctx) error {
 	// 	"status":  "success",
 	// 	"message": "Form submission received",
 	// })
+
+}
+
+func (controller *SkillControllerImpl) DeleteSKill(ctx *fiber.Ctx) error {
+
+	id := ctx.Params("skillId")
+
+	err := model.DeleteSkill(id)
+	if err != nil {
+		return err
+	}
+
+	return nil
 
 }

@@ -88,3 +88,18 @@ func CreateSkill(skill *Skill) (int, []byte, error) {
 
 	// return nil
 }
+
+func DeleteSkill(id string) error {
+
+	url := fmt.Sprintf("http://localhost:9090/api/skills/%s", id)
+
+	agent := fiber.Delete(url)
+
+	_, _, err := agent.Bytes()
+	if err != nil {
+		return fmt.Errorf("failed to make request : %v", err)
+	}
+
+	return nil
+
+}
