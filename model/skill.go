@@ -103,3 +103,24 @@ func DeleteSkill(id string) error {
 	return nil
 
 }
+
+func UpdateSkill(skill *Skill) (int, []byte, error) {
+
+	form := url.Values{}
+	form.Add("name", skill.Name)
+	formData := form.Encode()
+
+	// Create a new POST request using Fiber's HTTP client
+	agent := fiber.Put(fmt.Sprintf("http://localhost:9090/api/skills/%s", skill.ID))
+	agent.Set(fiber.HeaderContentType, fiber.MIMEApplicationForm)
+	agent.Body([]byte(formData))
+
+	// Send the request and get the response
+	statusCode, data, err := agent.Bytes()
+	if err != nil {
+		return 0, nil, fmt.Errorf("failed to make request: %v", err)
+	}
+
+	return statusCode, data, nil
+
+}

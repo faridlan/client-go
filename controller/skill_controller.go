@@ -14,6 +14,7 @@ type SkillController interface {
 	CreateRender(ctx *fiber.Ctx) error
 	CreateSKill(ctx *fiber.Ctx) error
 	DeleteSKill(ctx *fiber.Ctx) error
+	UpdateSkillRender(ctx *fiber.Ctx) error
 	UpdateSkill(ctx *fiber.Ctx) error
 }
 
@@ -126,7 +127,7 @@ func (controller *SkillControllerImpl) DeleteSKill(ctx *fiber.Ctx) error {
 
 }
 
-func (controller *SkillControllerImpl) UpdateSkill(ctx *fiber.Ctx) error {
+func (controller *SkillControllerImpl) UpdateSkillRender(ctx *fiber.Ctx) error {
 
 	id := ctx.Params("skillId")
 
@@ -141,5 +142,31 @@ func (controller *SkillControllerImpl) UpdateSkill(ctx *fiber.Ctx) error {
 	}
 
 	return ctx.Render("update", skillResponse)
+
+}
+
+func (controller *SkillControllerImpl) UpdateSkill(ctx *fiber.Ctx) error {
+
+	// id := ctx.Params("skillId")
+
+	skill := &model.Skill{
+		ID:   ctx.FormValue("id"),
+		Name: ctx.FormValue("name"),
+	}
+
+	statusCode, data, err := model.UpdateSkill(skill)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Response from the server:", string(data))
+
+	// Check if response status is not OK
+	if statusCode != fiber.StatusOK {
+		return ctx.Status(statusCode).SendString("Failed to send data")
+	}
+
+	// Return success response to the client
+	return ctx.SendString("Form submission received")
 
 }
