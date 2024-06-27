@@ -14,6 +14,7 @@ type SkillController interface {
 	CreateRender(ctx *fiber.Ctx) error
 	CreateSKill(ctx *fiber.Ctx) error
 	DeleteSKill(ctx *fiber.Ctx) error
+	UpdateSkill(ctx *fiber.Ctx) error
 }
 
 type SkillControllerImpl struct {
@@ -122,5 +123,23 @@ func (controller *SkillControllerImpl) DeleteSKill(ctx *fiber.Ctx) error {
 	}
 
 	return nil
+
+}
+
+func (controller *SkillControllerImpl) UpdateSkill(ctx *fiber.Ctx) error {
+
+	id := ctx.Params("skillId")
+
+	data, skillResponse, err := model.FindAllSkilByIdl(id)
+	if err != nil {
+		return err
+	}
+
+	jsonErr := json.Unmarshal(data, &skillResponse)
+	if jsonErr != nil {
+		return fmt.Errorf("failed to unmarshal response: %v", jsonErr)
+	}
+
+	return ctx.Render("update", skillResponse)
 
 }
