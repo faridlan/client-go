@@ -26,6 +26,7 @@
       {{range .Data}}
       <li class="list-group-item">ID : {{.ID}}, Name: {{.Name}}</li>
       <button type="button" class="btn btn-danger btn-block" onclick="deleteSkill('{{.ID}}')">Delete</button>
+      <a type="button" class="btn btn-primary" href="/skills/{{.ID}}" target="_blank">Update</a>
       {{end}}
     </ol>
   </div>

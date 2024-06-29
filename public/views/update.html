@@ -19,11 +19,12 @@
             <h4 class="mb-0">Contact Us</h4>
           </div>
           <div class="card-body">
-            <form id="createForm" method="PUT" action="/skills/update"> <!-- Set method and action attributes -->
+            <form id="createForm" method="PUT" action="/skills/update">
+              <!-- Set method and action attributes -->
               <div class="form-group">
                 <label for="name">Id</label>
                 <input type="text" class="form-control bg-dark text-white border-secondary" id="id" name="id"
-                  value="{{.Data.ID}}"> Added name attribute
+                  value="{{.Data.ID}}">
                 <label for="name">Name</label>
                 <input type="text" class="form-control bg-dark text-white border-secondary" id="name" name="name"
                   value="{{.Data.Name}}"> <!-- Added name attribute -->

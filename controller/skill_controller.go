@@ -71,22 +71,6 @@ func (controller *SkillControllerImpl) CreateSKill(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	// // Manually encode form data
-	// form := url.Values{}
-	// form.Add("name", skill.Name)
-	// formData := form.Encode()
-
-	// // Create a new POST request using Fiber's HTTP client
-	// agent := fiber.Post("http://localhost:9090/api/skills")
-	// agent.Set(fiber.HeaderContentType, fiber.MIMEApplicationForm)
-	// agent.Body([]byte(formData))
-
-	// // Send the request and get the response
-	// statusCode, data, err := agent.Bytes()
-	// if err != nil {
-	// 	return fmt.Errorf("failed to make request: %v", err)
-	// }
-
 	// Log the response
 	fmt.Println("Response from the server:", string(data))
 
@@ -97,20 +81,6 @@ func (controller *SkillControllerImpl) CreateSKill(ctx *fiber.Ctx) error {
 
 	// Return success response to the client
 	return ctx.SendString("Form submission received")
-
-	// skill := &model.Skill{
-	// 	Name: ctx.FormValue("name"),
-	// }
-
-	// err := model.CreateSkill(skill)
-	// if err != nil {
-	// 	return err
-	// }
-
-	// return ctx.JSON(fiber.Map{
-	// 	"status":  "success",
-	// 	"message": "Form submission received",
-	// })
 
 }
 
@@ -149,8 +119,13 @@ func (controller *SkillControllerImpl) UpdateSkill(ctx *fiber.Ctx) error {
 
 	// id := ctx.Params("skillId")
 
+	fmt.Println(ctx.FormValue("id"))
+	fmt.Println(ctx.FormValue("name"))
+
+	// id := ctx.Params("skillId")
+
 	skill := &model.Skill{
-		ID:   ctx.FormValue("id"),
+		// ID:   ctx.FormValue("id"),
 		Name: ctx.FormValue("name"),
 	}
 

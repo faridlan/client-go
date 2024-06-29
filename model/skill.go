@@ -107,11 +107,12 @@ func DeleteSkill(id string) error {
 func UpdateSkill(skill *Skill) (int, []byte, error) {
 
 	form := url.Values{}
+	// form.Add("id", skill.ID)
 	form.Add("name", skill.Name)
 	formData := form.Encode()
 
 	// Create a new POST request using Fiber's HTTP client
-	agent := fiber.Put(fmt.Sprintf("http://localhost:9090/api/skills/%s", skill.ID))
+	agent := fiber.Put(fmt.Sprintf("http://localhost:9090/api/skills/%s", "bodX9IS7s4sN3E6Di3xG"))
 	agent.Set(fiber.HeaderContentType, fiber.MIMEApplicationForm)
 	agent.Body([]byte(formData))
 
