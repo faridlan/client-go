@@ -8,6 +8,7 @@ import (
 func SetupRoute(app *fiber.App) {
 
 	skillController := controller.NewSkillController()
+	profileController := controller.NewProfileController()
 
 	app.Get("/", skillController.SKillRender)
 	app.Get("/:skillId", skillController.FindById)
@@ -16,5 +17,7 @@ func SetupRoute(app *fiber.App) {
 	app.Delete("/skills/:skillId", skillController.DeleteSKill)
 	app.Get("/skills/:skillId", skillController.UpdateSkillRender)
 	app.Put("/skills/update", skillController.UpdateSkill)
+
+	app.Get("/profiles/:profileId", profileController.FindProfile)
 
 }
