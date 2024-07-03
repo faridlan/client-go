@@ -19,5 +19,7 @@ func SetupRoute(app *fiber.App) {
 	app.Put("/skills/update", skillController.UpdateSkill)
 
 	app.Get("/profiles/:profileId", profileController.FindProfile)
+	app.Get("/form/profiles", profileController.CreateProfileRender)
+	app.Post("/create/profiles", profileController.CreateProfile)
 
 }

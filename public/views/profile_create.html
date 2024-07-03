@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark-Themed Bootstrap Form</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark text-white">
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card bg-secondary text-white shadow-sm">
+          <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">Contact Us</h4>
+          </div>
+          <div class="card-body">
+            <form id="createForm" method="POST" action="/create/profiles"> <!-- Set method and action attributes -->
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control bg-dark text-white border-secondary" id="name" name="name"
+                  placeholder="Enter Profile name"> <!-- Added name attribute -->
+
+                <label for="description">Description</label>
+                <input type="text" class="form-control bg-dark text-white border-secondary" id="description"
+                  name="description" placeholder="Enter Description"> <!-- Added name attribute -->
+
+                <label for="email">Email</label>
+                <input type="email" class="form-control bg-dark text-white border-secondary" id="email" name="email"
+                  placeholder="Enter Email"> <!-- Added name attribute -->
+
+                <label for="linked_in">LinkedIn</label>
+                <input type="text" class="form-control bg-dark text-white border-secondary" id="linked_in"
+                  name="linked_in" placeholder="Enter linkedin account"> <!-- Added name attribute -->
+
+                <label for="instagram">Instagram</label>
+                <input type="text" class="form-control bg-dark text-white border-secondary" id="instagram"
+                  name="instagram" placeholder="Enter instagram account"> <!-- Added name attribute -->
+
+                <label for="github">GitHub</label>
+                <input type="text" class="form-control bg-dark text-white border-secondary" id="github" name="github"
+                  placeholder="Enter linkedin account"> <!-- Added name attribute -->
+
+                <label for="about">About</label>
+                <input type="text" class="form-control bg-dark text-white border-secondary" id="about" name="about"
+                  placeholder="Enter About"> <!-- Added name attribute -->
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

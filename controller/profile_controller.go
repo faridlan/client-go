@@ -10,6 +10,8 @@ import (
 
 type ProfileController interface {
 	FindProfile(ctx *fiber.Ctx) error
+	CreateProfile(ctx *fiber.Ctx) error
+	CreateProfileRender(ctx *fiber.Ctx) error
 }
 
 type ProfileControllerImpl struct {
@@ -34,5 +36,40 @@ func (controller *ProfileControllerImpl) FindProfile(ctx *fiber.Ctx) error {
 	}
 
 	return ctx.Render("profile", profileResponse)
+
+}
+
+func (controller *ProfileControllerImpl) CreateProfile(ctx *fiber.Ctx) error {
+
+	profile := &model.Profile{
+		Name:        ctx.FormValue("name"),
+		Description: ctx.FormValue("description"),
+		Email:       ctx.FormValue("email"),
+		MediaSocial: model.MediaSocial{
+			LinkedIn:  ctx.FormValue("linked_in"),
+			Instagram: ctx.FormValue("instagram"),
+			GitHub:    ctx.FormValue("github"),
+		},
+		About: ctx.FormValue("about"),
+	}
+
+	statusCode, data, err := model.CreateProfile(profile)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Response from the server:", string(data))
+
+	if statusCode != fiber.StatusOK {
+		return ctx.Status(statusCode).SendString("failed to send data")
+	}
+
+	return ctx.SendString("form submission recceived")
+
+}
+
+func (controller *ProfileControllerImpl) CreateProfileRender(ctx *fiber.Ctx) error {
+
+	return ctx.Render("profile_create", nil)
 
 }
