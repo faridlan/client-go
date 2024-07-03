@@ -75,18 +75,6 @@ func CreateSkill(skill *Skill) (int, []byte, error) {
 
 	return statusCode, data, nil
 
-	// // Define the URL
-	// skillUrl := "http://localhost:9090/api/skills"
-
-	// form := url.Values{}
-	// form.Add("name", skill.Name)
-	// formData := form.Encode()
-
-	// agent := fiber.Post(skillUrl)
-	// agent.Set(fiber.HeaderContentType, fiber.MIMEApplicationJSON)
-	// agent.Body([]byte(formData))
-
-	// return nil
 }
 
 func DeleteSkill(id string) error {
