@@ -35,6 +35,8 @@ func (controller *ProfileControllerImpl) FindProfile(ctx *fiber.Ctx) error {
 		return fmt.Errorf("failed to unmarshal response : %v", jsonErr)
 	}
 
+	fmt.Println(profileResponse)
+
 	return ctx.Render("profile", profileResponse)
 
 }

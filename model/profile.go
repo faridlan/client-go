@@ -8,18 +8,18 @@ import (
 )
 
 type Profile struct {
-	ID          string      `json:"id,omitempty"`
-	Name        string      `json:"name,omitempty"`
-	Description string      `json:"description,omitempty"`
-	Email       string      `json:"email,omitempty"`
-	MediaSocial MediaSocial `json:"media_social,omitempty"`
-	About       string      `json:"about,omitempty"`
+	ID          string      `json:"id" form:"id"`
+	Name        string      `json:"name" form:"name"`
+	Description string      `json:"description" form:"description"`
+	Email       string      `json:"email" form:"email"`
+	MediaSocial MediaSocial `json:"media_social" form:"media_social"`
+	About       string      `json:"about" form:"about"`
 }
 
 type MediaSocial struct {
-	LinkedIn  string `json:"linked_in,omitempty"`
-	Instagram string `json:"instagram,omitempty"`
-	GitHub    string `json:"git_hub,omitempty"`
+	LinkedIn  string `json:"linked_in" form:"linked_in"`
+	Instagram string `json:"instagram" form:"instagram"`
+	GitHub    string `json:"github" form:"github"`
 }
 
 func FindProfile(id string) ([]byte, *WebResponse, error) {
@@ -36,6 +36,8 @@ func FindProfile(id string) ([]byte, *WebResponse, error) {
 	webResponse := &WebResponse{
 		Data: Profile{},
 	}
+
+	fmt.Println(webResponse)
 
 	return data, webResponse, nil
 
