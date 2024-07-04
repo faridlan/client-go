@@ -16,7 +16,7 @@ func SetupRoute(app *fiber.App) {
 	app.Post("/form/skills/x", skillController.CreateSKill)
 	app.Delete("/skills/:skillId", skillController.DeleteSKill)
 	app.Get("/skills/:skillId", skillController.UpdateSkillRender)
-	app.Put("/skills/update", skillController.UpdateSkill)
+	app.Put("/skills/update", skillController.UpdateSkill) //error
 
 	app.Get("/profiles/:profileId", profileController.FindProfile)
 	app.Get("/form/profiles", profileController.CreateProfileRender)
